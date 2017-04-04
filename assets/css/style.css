@@ -1,0 +1,71 @@
+html,body{
+  height:100%;
+  width: 100%;
+  overflow-x: hidden;
+  padding:0px;
+  margin: 0px;
+}
+
+
+.navbar-collapse.collapse {
+display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+float: left !important;
+  margin-right:5px;
+}
+
+
+.navbar-nav ul.navbar-right:last-child {
+margin-right: -15px !important;
+}
+
+ul.navbar-right {
+float: right!important;
+}
+
+@media screen and (max-width: 300px) {
+  .searchForm {
+  clear:both;
+}
+}
+
+.navbar {
+  margin-bottom:0;
+  border-radius:0;
+}
+.nav-tabs
+{
+  display:flex;
+}
+.container
+{
+  width: 100%
+}
+.img
+{
+  width:100%;
+  height:320px;
+}
+.noteImg
+{
+  height:265px;
+  width:200px;
+  margin-left: 55px;
+}
+.noteContent
+{
+  height:140px;
+  width:200px;
+  margin-left: 55px;
+}
+.span
+{
+  font-weight: 700;
+  margin-left: 18px;
+}
+.docType
+{
+  padding-bottom: 20px;
+}

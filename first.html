@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script src="assets/js/jquery3.js">
+  </script>
+  <title>noteshare</title>
+  <style>
+
+
+  </style>
+    <script>
+        $('document').ready( function() {
+            
+               $.ajax({
+                   type: 'GET',
+                    url : 'https://api.myjson.com/bins/1179df',
+                    dataType:'json',
+                    success : function(result)  {
+                        console.log(result);
+                        AppendsValue("latest");
+                         
+                        
+                        function AppendsValue(a) {                                             
+                        var lengths = result[a].length;                      
+                            for(var i=0;i<lengths;i++) {                  
+                            
+                            $("#QuestionContainer").append(
+                            '<div class="col-md-4"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +'</span><span class="glyphicon glyphicon-download-alt"></span><span class="span" id="likes">' +   result[a][i].likes +'</span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div</div>');
+                        }
+                            
+                        }
+                        
+                        // ON CC button Click
+                        $("#CloudBtn").on("click",function() {
+                            $("#QuestionContainer").html(''); 
+                            AppendsValue("cc");
+                            
+                        });
+                        
+                        // ON SE button Click
+                        $("#SEbtn").on("click",function() {
+                             $("#QuestionContainer").html('');
+                            AppendsValue("se");
+                            
+                        });
+                        
+                        // ON LatestBtn button Click
+                        $("#latestbtn").on("click",function() {
+                             $("#QuestionContainer").html('');
+                            AppendsValue("latest");
+                            
+                        });
+                        
+                        // ON C button Click
+                        $("#CBtn").on("click",function() {
+                             $("#QuestionContainer").html('');
+                            AppendsValue("c");
+                            
+                        });
+                        
+                        // ON C++ button Click
+                        $("#cplusBtn").on("click",function() {
+                            $("#QuestionContainer").html('');
+                            AppendsValue("c++");
+                            
+                        });
+                        
+                        
+                            
+                        /*    $("#nameNote").html(result.cc.name);            
+                            $("#paperimg").attr("src","assets/images/" + result.cc.imgs);
+                            $("#NoteDescription").html(result.cc.desc);
+                            $("#download").html(result.cc.downloads);      
+                            $("#likes").html(result.cc.likes);    */
+                        /*var ars = result.results;
+                        console.log(ars);*/
+                        
+                        /*var lengths = ars.length;
+                        
+                        for(var i=0;i<lengths;i++) {
+                            console.log(ars[i]);
+                        }*/
+                        
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+                 
+        <ul class="nav navbar-nav navbar-left navbar-header">
+            <li>
+                  <a class="navbar-brand" href="#">
+                    Note Sharing
+                  </a>
+            </li>
+        </ul>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+         <li>
+           <button type="submit" class="btn btn-default navbar-btn">Search</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Upload</button>
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Upload Your Note</h4>
+            </div>
+              <div class="modal-body">
+                <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      select your category
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">Action</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Separated link</a></li>
+    </ul>
+  </div>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+
+         </div>
+          </div>
+        </li>
+      </ul>
+       <form class="navbar-form navbar-right searchForm">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+      </form>
+    </div>
+    <div>
+       <img src="" id="backImage" class="img-responsive img">
+     </div>
+  </div><!-- /.container-fluid -->
+</nav> <!-- /.navbar-collapse -->
+
+<section>
+<div class="container">
+    <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#latest" aria-expanded="true" role="tab" data-toggle="tab" id="latestbtn">LATEST</a></li>
+    <li role="presentation"><a href="#cloud" aria-expanded="false" role="tab" data-toggle="tab" id="CloudBtn">CC</a></li>
+    <li role="presentation"><a href="#c" aria-expanded="false" role="tab" data-toggle="tab" id="CBtn">C</a></li>
+    <li role="presentation"><a href="#se" aria-expanded="false" role="tab" data-toggle="tab" id="SEbtn">SE</a></li>
+    <li role="presentation"><a href="#oops" aria-expanded="false" role="tab" data-toggle="tab" id="cplusBtn">C++</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content quotes add-animation animation-2 animate">
+        <div  class="tab-pane active" id="latest">
+          <div class="container-fluid">
+            <div class="docType">
+                <h1>Question paper</h1>
+            </div>
+            <div class="row" id="QuestionContainer">
+               
+               
+               
+               
+               
+          </div>   <!-- /.row -->
+          <div class="row">
+            <div class="docType">
+                <h1>Study materail</h1>    
+            </div>
+            <div class="row" id="StudyMaterials">
+            <div class="col-md-4">
+              <div class="noteImg">
+                  <img src="assets/images/sen1.jpg" class="img-responsive">
+              </div>
+              <div class="noteContent">
+                  <h3 class="text-center">Waterfall model</h3>
+                  <p>software engineering-waterfall model(phases)</p>
+                  <p ><span class="span">13</span>
+                    <span class="glyphicon glyphicon-download-alt">    </span>
+                    <span class="span">41</span>
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <p>
+              </div>
+            </div>
+            </div>
+          </div> <!-- /.row -->
+        </div> <!-- /.container-fluid -->
+       </div>   <!-- /.tab-pane-->
+    </div> <!-- /.tab-conent -->
+
+   </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="assets/js/bootstrap.js"></script>
+</body>
+</html>
