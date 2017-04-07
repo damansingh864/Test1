@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
   <script src="assets/js/jquery3.js">
   </script>
   <title>noteshare</title>
@@ -22,16 +23,22 @@
                     dataType:'json',
                     success : function(result)  {
                         console.log(result);
-                        AppendsValue("latest");
-                         
+                        AppendsValue("latest");                     
                         
                         function AppendsValue(a) {                                             
                         var lengths = result[a].length;                      
                             for(var i=0;i<lengths;i++) {                  
                             
                             $("#QuestionContainer").append(
-                            '<div class="col-md-4"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +'</span><span class="glyphicon glyphicon-download-alt"></span><span class="span" id="likes">' +   result[a][i].likes +'</span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div</div>');
+                            '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +' </span><span class="glyphicon glyphicon-download-alt"></span><span class="span"></span> <span class="glyphicon glyphicon-share" data-toggle="modal" data-target="#myModal1"></span><span class="span" id="likes">' +   result[a][i].likes + ' Likes </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
                         }
+                         
+                             for(var i=0;i<lengths;i++) {                  
+                            
+                            $("#StudyMaterials").append(
+                            '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +' </span><span class="glyphicon glyphicon-download-alt"></span><span class="span"></span><span class="glyphicon glyphicon-share"></span><span class="span" id="likes">' +   result[a][i].likes + ' </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
+                        }
+                            
                             
                         }
                         
@@ -97,8 +104,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-                 
+  <div class="container">                 
         <ul class="nav navbar-nav navbar-left navbar-header">
             <li>
                   <a class="navbar-brand" href="#">
@@ -114,35 +120,6 @@
         </li>
         <li>
           <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Upload</button>
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Upload Your Note</h4>
-            </div>
-              <div class="modal-body">
-                <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      select your category
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Separated link</a></li>
-    </ul>
-  </div>
-        </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-
-         </div>
-          </div>
         </li>
       </ul>
        <form class="navbar-form navbar-right searchForm">
@@ -151,13 +128,77 @@
           </div>
       </form>
     </div>
-    <div>
-       <img src="" id="backImage" class="img-responsive img">
-     </div>
   </div><!-- /.container-fluid -->
 </nav> <!-- /.navbar-collapse -->
-
+<div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Upload Your Note</h4>
+                  </div>
+                  <div class="modal-body">
+                   <div class="row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Select Category
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Latest</a></li>
+                        <li><a href="#">CC</a></li>
+                        <li><a href="#">C</a></li>
+                        <li><a href="#">C++</a></li>
+                        <li><a href="#">SE</a></li>
+                        </ul>    
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Select Documentation Type
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Question Paper</a></li>
+                        <li><a href="#">Study Material</a></li>
+                        </ul>    
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control"  placeholder="Enter the name of the Note">
+                 </div>
+                    <div class="form-group">
+                  <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description"></textarea>
+                  </div>
+                
+                </div>
+                <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" id="exampleInputFile">
+                        <p class="help-block">Example block-level help text here.</p>
+                  </div>
+                </div>
+                </div>
+                 </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                  <button type="button" class="btn btn-default">Clear</button>
+                </div>
+                   
+                
+              </div>
+             </div>
+          </div>
 <section>
+    <div id="backImage">
+       <div class="container">
+           <h1>Share Success Study</h1>
+       </div>
+    </div>
 <div class="container">
     <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -172,42 +213,68 @@
   <div class="tab-content quotes add-animation animation-2 animate">
         <div  class="tab-pane active" id="latest">
           <div class="container-fluid">
-            <div class="docType">
-                <h1>Question paper</h1>
+           
+            <div class="docType PaperContainerTitle">
+               <div class="row equalHeight">
+                   <div class="col-xs-12">
+                        <h1><span>Question paper</span></h1>   
+                        <a href="#">See More</a>
+
+                    </div>
+               </div>                
             </div>
+           
             <div class="row" id="QuestionContainer">
-               
-               
-               
-               
-               
-          </div>   <!-- /.row -->
-          <div class="row">
-            <div class="docType">
-                <h1>Study materail</h1>    
+
+            </div>   <!-- /.row -->
+
+              <div class="docType PaperContainerTitle">
+               <div class="row equalHeight">
+                   <div class="col-xs-12">
+                        <h1><span>Study Material</span></h1>   
+                        <a href="#">See More</a>
+
+                    </div>
+               </div>                
             </div>
+            <!---- Modal For the Share --->
+            <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Share Your Notes</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row text-center">
+                           <div class="col-xs-3">
+                                <i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i>
+                           </div>    
+                           <div class="col-xs-3">
+                                <i class="fa fa-linkedin-square fa-4x" aria-hidden="true"></i>
+                           </div>    
+                           <div class="col-xs-3">
+                                <i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i>
+                           </div>    
+                           <div class="col-xs-3">
+                                <i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i>
+                           </div>    
+                        </div>    
+                      </div>
+                   </div>                              
+                </div>
+             </div>
+
+           <!--- Study Material Container --->
             <div class="row" id="StudyMaterials">
-            <div class="col-md-4">
-              <div class="noteImg">
-                  <img src="assets/images/sen1.jpg" class="img-responsive">
-              </div>
-              <div class="noteContent">
-                  <h3 class="text-center">Waterfall model</h3>
-                  <p>software engineering-waterfall model(phases)</p>
-                  <p ><span class="span">13</span>
-                    <span class="glyphicon glyphicon-download-alt">    </span>
-                    <span class="span">41</span>
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                  <p>
-              </div>
+            
             </div>
-            </div>
+            <hr>
           </div> <!-- /.row -->
         </div> <!-- /.container-fluid -->
        </div>   <!-- /.tab-pane-->
     </div> <!-- /.tab-conent -->
 
-   </div>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
