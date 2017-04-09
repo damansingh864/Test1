@@ -1,284 +1,256 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="assets/css/bootstrap.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/font-awesome.css">
-  <script src="assets/js/jquery3.js">
-  </script>
-  <title>noteshare</title>
-  <style>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="assets/css/bootstrap.css" rel="stylesheet">
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="assets/css/font-awesome.css">
+      <script src="assets/js/jquery3.js">
+      </script>
+      <title>Noteshare</title>
+        
+        <script>
+            
 
 
-  </style>
-    <script>
-        $('document').ready( function() {
+                   /* $.ajax({
+                        method: "POST",
+                       url : 'test.json',
+                       //type: 'PUT',
+                        //dataType: 'json',
+                        //url : 'https://api.myjson.com/bins/1179df',                                   
+                        //data: JSON.stringify(as),
+                        data:{name:"John",location:"boston"}
+                    })
+                    .done(function(msg){
+                        alert("Data Saved" + msg);
+                    });
+                      //  contentType:'application/json',
+                        //success:
+                        //function(result) {
+                          //  alert("working");
+                        //},
+                        //error: function(xhr) {
+                            //console.log(xhr);
+                        //}
+                    //});*/
             
-               $.ajax({
-                   type: 'GET',
-                    url : 'https://api.myjson.com/bins/1179df',
-                    dataType:'json',
-                    success : function(result)  {
-                        console.log(result);
-                        AppendsValue("latest");                     
-                        
-                        function AppendsValue(a) {                                             
-                        var lengths = result[a].length;                      
-                            for(var i=0;i<lengths;i++) {                  
-                            
-                            $("#QuestionContainer").append(
-                            '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +' </span><span class="glyphicon glyphicon-download-alt"></span><span class="span"></span> <span class="glyphicon glyphicon-share" data-toggle="modal" data-target="#myModal1"></span><span class="span" id="likes">' +   result[a][i].likes + ' Likes </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
-                        }
-                         
-                             for(var i=0;i<lengths;i++) {                  
-                            
-                            $("#StudyMaterials").append(
-                            '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=assets/images/' +  result[a][i].imgs  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +  result[a][i].name + '</h3><p id="NoteDescription">' + result[a][i].desc +  '</p><div class="icons"><p><span class="span" id="download">' + result[a][i].downloads +' </span><span class="glyphicon glyphicon-download-alt"></span><span class="span"></span><span class="glyphicon glyphicon-share"></span><span class="span" id="likes">' +   result[a][i].likes + ' </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
-                        }
-                            
-                            
-                        }
-                        
-                        // ON CC button Click
-                        $("#CloudBtn").on("click",function() {
-                            $("#QuestionContainer").html(''); 
-                            AppendsValue("cc");
-                            
-                        });
-                        
-                        // ON SE button Click
-                        $("#SEbtn").on("click",function() {
-                             $("#QuestionContainer").html('');
-                            AppendsValue("se");
-                            
-                        });
-                        
-                        // ON LatestBtn button Click
-                        $("#latestbtn").on("click",function() {
-                             $("#QuestionContainer").html('');
-                            AppendsValue("latest");
-                            
-                        });
-                        
-                        // ON C button Click
-                        $("#CBtn").on("click",function() {
-                             $("#QuestionContainer").html('');
-                            AppendsValue("c");
-                            
-                        });
-                        
-                        // ON C++ button Click
-                        $("#cplusBtn").on("click",function() {
-                            $("#QuestionContainer").html('');
-                            AppendsValue("c++");
-                            
-                        });
-                        
-                        
-                            
-                        /*    $("#nameNote").html(result.cc.name);            
-                            $("#paperimg").attr("src","assets/images/" + result.cc.imgs);
-                            $("#NoteDescription").html(result.cc.desc);
-                            $("#download").html(result.cc.downloads);      
-                            $("#likes").html(result.cc.likes);    */
-                        /*var ars = result.results;
-                        console.log(ars);*/
-                        
-                        /*var lengths = ars.length;
-                        
-                        for(var i=0;i<lengths;i++) {
-                            console.log(ars[i]);
-                        }*/
-                        
-                    },
-                    error: function() {
-                        alert("error");
-                    }
-                });
-            
-        });
-    </script>
-</head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">                 
-        <ul class="nav navbar-nav navbar-left navbar-header">
-            <li>
-                  <a class="navbar-brand" href="#">
-                    Note Sharing
-                  </a>
+        </script>        
+    </head>
+    <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">                 
+            <ul class="nav navbar-nav navbar-left navbar-header">
+                <li>
+                      <a class="navbar-brand" href="#">
+                        Note Sharing
+                      </a>
+                </li>
+            </ul>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+             <li>
+               <button type="submit" class="btn btn-default navbar-btn " id="SearchBtn">Search</button>
             </li>
-        </ul>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-         <li>
-           <button type="submit" class="btn btn-default navbar-btn">Search</button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Upload</button>
-        </li>
-      </ul>
-       <form class="navbar-form navbar-right searchForm">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-      </form>
-    </div>
-  </div><!-- /.container-fluid -->
-</nav> <!-- /.navbar-collapse -->
-<div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Upload Your Note</h4>
-                  </div>
-                  <div class="modal-body">
-                   <div class="row">
-                   <div class="col-md-6">
-                    <div class="form-group">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Select Category
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Latest</a></li>
-                        <li><a href="#">CC</a></li>
-                        <li><a href="#">C</a></li>
-                        <li><a href="#">C++</a></li>
-                        <li><a href="#">SE</a></li>
-                        </ul>    
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Select Documentation Type
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Question Paper</a></li>
-                        <li><a href="#">Study Material</a></li>
-                        </ul>    
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <input type="text" class="form-control"  placeholder="Enter the name of the Note">
-                 </div>
-                    <div class="form-group">
-                  <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description"></textarea>
-                  </div>
-                
-                </div>
-                <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <input type="file" id="exampleInputFile">
-                        <p class="help-block">Example block-level help text here.</p>
-                  </div>
-                </div>
-                </div>
-                 </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-default">Submit</button>
-                  <button type="button" class="btn btn-default">Clear</button>
-                </div>
-                   
-                
+            <li>
+              <button type="button" class="btn btn-default navbar-btn btn-info" data-toggle="modal" data-target="#myModal">Upload</button>
+            </li>
+          </ul>
+           <form class="navbar-form navbar-right searchForm">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" id="searchCtn">
               </div>
-             </div>
-          </div>
-<section>
-    <div id="backImage">
-       <div class="container">
-           <h1>Share Success Study</h1>
-       </div>
-    </div>
-<div class="container">
-    <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#latest" aria-expanded="true" role="tab" data-toggle="tab" id="latestbtn">LATEST</a></li>
-    <li role="presentation"><a href="#cloud" aria-expanded="false" role="tab" data-toggle="tab" id="CloudBtn">CC</a></li>
-    <li role="presentation"><a href="#c" aria-expanded="false" role="tab" data-toggle="tab" id="CBtn">C</a></li>
-    <li role="presentation"><a href="#se" aria-expanded="false" role="tab" data-toggle="tab" id="SEbtn">SE</a></li>
-    <li role="presentation"><a href="#oops" aria-expanded="false" role="tab" data-toggle="tab" id="cplusBtn">C++</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content quotes add-animation animation-2 animate">
-        <div  class="tab-pane active" id="latest">
-          <div class="container-fluid">
-           
-            <div class="docType PaperContainerTitle">
-               <div class="row equalHeight">
-                   <div class="col-xs-12">
-                        <h1><span>Question paper</span></h1>   
-                        <a href="#">See More</a>
-
-                    </div>
-               </div>                
-            </div>
-           
-            <div class="row" id="QuestionContainer">
-
-            </div>   <!-- /.row -->
-
-              <div class="docType PaperContainerTitle">
-               <div class="row equalHeight">
-                   <div class="col-xs-12">
-                        <h1><span>Study Material</span></h1>   
-                        <a href="#">See More</a>
-
-                    </div>
-               </div>                
-            </div>
-            <!---- Modal For the Share --->
-            <div class="modal fade" id="myModal1" role="dialog">
+          </form>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav> <!-- /.navbar-collapse -->
+    
+    <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
+                     
                       <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Share Your Notes</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Your Note</h4>
                       </div>
                       <div class="modal-body">
-                        <div class="row text-center">
-                           <div class="col-xs-3">
-                                <i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i>
-                           </div>    
-                           <div class="col-xs-3">
-                                <i class="fa fa-linkedin-square fa-4x" aria-hidden="true"></i>
-                           </div>    
-                           <div class="col-xs-3">
-                                <i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i>
-                           </div>    
-                           <div class="col-xs-3">
-                                <i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i>
-                           </div>    
-                        </div>    
+                       <div class="row">
+                       <form>
+                       <div class="col-md-6">
+                        <div class="form-group">
+                        <select class="form-control" id="categorySel">
+                            <option selected="" disabled value="">Select Category</option>          <option value="arts">Arts</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="science">Science</option>
+                            <option value="mathematics">Mathematics</option>
+                        </select>
+
+                        </div>
+                        
+                        <div class="form-group">
+                        <div class="dropdown">
+                           <select class="form-control" id="SelDocType">
+                                <option selected="" disabled value="">Select Documentation Type</option>
+                                <option value="Question Paper">Question Paper</option>
+                                <option value="Study Material">Study Material</option>       
+                                <option value="Study Material">Project Report</option>     
+                            </select>                        
+                        </div>
+                           </div>
+                        <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Enter the name of the Note" id="NoteName">
+                     </div>
+                        <div class="form-group">
+                      <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description"></textarea>
                       </div>
-                   </div>                              
+
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group">
+                            <label for="exampleInputFile">Upload a File</label>
+                            <input type="file" id="exampleInputFile">   
+                        </div>
+                    </div>
+                    </form>
+                    </div>
+                     </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default btn-success" id="submissionUpload">Submit</button>
+                      <button type="reset" class="btn btn-default btn-primary">Clear</button>
+                    </div>
+
+                   
+                  </div>
+                 </div>
+              </div>
+    <section>
+        <div id="backImage">
+           <div class="container">
+               <h1>Share Success Study</h1>
+           </div>
+        </div>
+    <div class="container">
+       <div class="row tabss">
+        <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#latest" aria-expanded="true" role="tab" data-toggle="tab" id="latestbtn">Latest</a></li>
+            <li role="presentation"><a href="#cloud" aria-expanded="false" role="tab" data-toggle="tab" id="artsBtn">Arts</a></li>
+            <li role="presentation"><a href="#c" aria-expanded="false" role="tab" data-toggle="tab" id="EnngBtn">Engineering</a></li>
+            <li role="presentation"><a href="#se" aria-expanded="false" role="tab" data-toggle="tab" id="SciBtn">Science</a></li>
+            <li role="presentation"><a href="#oops" aria-expanded="false" role="tab" data-toggle="tab" id="MathsBtn">Mathematics</a></li>
+          </ul>
+        </div>
+      <!-- Tab panes -->
+      <div class="tab-content quotes add-animation animation-2 animate">
+            <div  class="tab-pane active" id="latest">
+              <div class="container-fluid">
+                <div class="row menuSelectCtn">
+                   <div class="col-xs-12">
+                    <ul class="list-unstyled list-inline">
+                        <li>
+                            <a href="#questionsPrs">Question Papers</a>
+                        </li>
+                        <li>
+                            <a href="#StdMaterials">Study Material</a>
+                        </li>
+                        <li>
+                            <a href="#PrjReports">Project Reports</a>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-             </div>
+                <div class="docType PaperContainerTitle" id="questionsPrs">
+                   <div class="row equalHeight">
+                       <div class="col-xs-12">
+                            <h2><span>Question Papers</span></h2>   
+                            <a href="#" id="MoreSee1">See More</a>
 
-           <!--- Study Material Container --->
-            <div class="row" id="StudyMaterials">
-            
-            </div>
-            <hr>
-          </div> <!-- /.row -->
-        </div> <!-- /.container-fluid -->
-       </div>   <!-- /.tab-pane-->
-    </div> <!-- /.tab-conent -->
+                        </div>
+                   </div>                
+                </div>
 
-</section>
+                <div class="row" id="QuestionContainer">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                </div>   <!-- /.row --
+                
+                
+                
+                <!--- Study Material Container --->
+                 
+                  <div class="docType PaperContainerTitle" id="StdMaterials">
+                   <div class="row equalHeight">
+                       <div class="col-xs-12">
+                            <h2><span>Study Material</span></h2>   
+                            <a href="#" id="MoreSee2">See More</a>
 
-<script src="assets/js/bootstrap.js"></script>
-</body>
-</html>
+                        </div>
+                   </div>                
+                </div>
+                
+                <div class="row" id="StudyMaterials">
+
+                </div>
+                
+                <!--- Project Reports Container --->
+                  <div class="docType PaperContainerTitle" id="PrjReports">
+                   <div class="row equalHeight">
+                       <div class="col-xs-12">
+                            <h2><span>Project Reports</span></h2>   
+                            <a href="#" id="MoreSee2">See More</a>
+
+                        </div>
+                   </div>                
+                </div>
+                
+                <div class="row" id="ProjectReports">
+
+                </div>
+                
+                <!---- Modal For the Share --->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Share Your Notes</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row text-center">
+                               <div class="col-xs-3">
+                                    <i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i>
+                               </div>    
+                               <div class="col-xs-3">
+                                    <i class="fa fa-linkedin-square fa-4x" aria-hidden="true"></i>
+                               </div>    
+                               <div class="col-xs-3">
+                                    <i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i>
+                               </div>    
+                               <div class="col-xs-3">
+                                    <i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i>
+                               </div>    
+                            </div>    
+                          </div>
+                       </div>                              
+                    </div>
+                 </div>
+
+               
+                <hr>
+              </div> <!-- /.row -->
+            </div> <!-- /.container-fluid -->
+           </div>   <!-- /.tab-pane-->
+        </div> <!-- /.tab-conent -->
+        
+    </section>
+    <footer class="mainFooter">
+        <p>&copy; Copyright 2017 NoteSharing.</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/script1.js"></script>
+    
+    </body>
+    </html>

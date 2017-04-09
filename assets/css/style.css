@@ -1,10 +1,10 @@
 html,body{
   height:100%;
   width: 100%;
-  overflow-x: hidden;
   padding:0px;
   margin: 0px;
 }
+
 
 
 .navbar-collapse.collapse {
@@ -34,12 +34,21 @@ float: right!important;
 .navbar {
   margin-bottom:0;
   border-radius:0;
+  background:rgb(27, 134, 167);
+    border:0;
 }
+
+ul.nav.navbar-nav li > a.navbar-brand {
+    color:white;
+}
+
 #backImage {
-    background:url('../images/backimg.jpg');
+    background:url('../images/banner.jpg');
+    background:linear-gradient(0deg, rgba(10,10,10,.5) 30%,rgba(10,10,10,.5) 70%) ,url('../images/banner.jpg');    
     max-width:100%;
     height:320px;
-    background-size:100% 100%;
+    background-size:100% 135%;
+    background-position:center;
     position:relative;
 }
 
@@ -49,17 +58,37 @@ float: right!important;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    color:blue;
     text-align: center;    
-    background:rgba(23,23,32,.4);
+    font-size:55px;
+    /*text-shadow:1px 1px 0px rgba(10, 10, 10, .7),1px 3px 0px rgba(10,10, 10, .7), 1px 5px 0px rgba(10, 10, 10, .7);*/
+    color:rgba(255,255,255,1);
 }
-
-
 
 .nav-tabs
 {
   display:flex;
+    border:0px;
 }
+
+.row.tabss {
+    padding:0px 15px;
+    background:rgb(27, 134, 167);
+}
+
+.row.tabss a {
+    color:white;
+}
+
+.row.tabss a:hover {
+    color:grey;
+    border-radius: 0px;
+}
+
+.row.tabss a.active:hover {
+    border-radius:inherit
+        
+}
+
 .container
 {
   width: 100%
@@ -73,17 +102,19 @@ float: right!important;
 .NotesContainer {
     box-shadow:0px 0px 5px 0px rgba(10,10,10,.09);
     margin:30px auto;
-    height:auto;
-    width:220px;
+    height:500px;
+    width:300px;
     border:1px solid rgba(50,50,50,.2);
+    background:rgba(90,90,90,.09);
     overflow: hidden;
 }
 
 .noteImg
 {
-  height:285px;
-  width:220px;
-  border-bottom: 0;    
+  height:320px;
+  width:300px;
+  border-bottom: 0;  
+    background:white;
 }
 
 .noteImg img {
@@ -94,11 +125,11 @@ float: right!important;
 
 .noteContent
 {
-  min-height:auto;
-  width:220px;
+  height:150px;
+  width:100%;
   border-top:1px solid rgba(70,70,70,.3);
   text-align: center;
-    background:rgba(90,90,90,.09);
+  padding:0px 15px;
 }
 
 .noteContent p {
@@ -125,13 +156,14 @@ float: right!important;
 {
   padding:0px 20px; 
   position:relative;
+    margin-top:30px;
 }    
 
-.docType h1  {
+.docType h2  {
     position:relative;
 }
 
-.docType h1 span {
+.docType h2 span {
     background: white;
     z-index: 1;
     position: relative;
@@ -139,7 +171,7 @@ float: right!important;
     margin-left:40px;
 }
 
-.docType h1:before {
+.docType h2:before {
     position:absolute;
     content:"";
     display:block;
@@ -172,6 +204,10 @@ float: right!important;
     padding:0px;
 }
 
+.tab-content {
+    padding-top:40px;
+}
+
 .row.equalHeight {
   display: -webkit-box;
   display: -webkit-flex;
@@ -179,7 +215,7 @@ float: right!important;
   display:         flex;
 }
 .row.equalHeight > [class*='col-'] {
-	 display: flex;
+	 
 	 flex-direction: column;
 }
 
@@ -207,4 +243,60 @@ float: right!important;
      text-align: left;	
      vertical-align: middle;
 }	
+
+/**** Footer Styles ****/
+
+.mainFooter {
+    background:rgb(27, 134, 167);
+    color:white;
+    text-align: center;
+    padding:8px 0px;
+    font-size:13px;
+    font-style:italic;
+}
+
+.mainFooter p {
+    margin:0;
+}
+
+/**** Modal For Share Style *****/
+
+.icons  p .glyphicon:hover {
+    cursor: pointer;
+}
+
+
+/*****  Fragment Identifier Tabs *****/
+
+.row.menuSelectCtn {
+    padding:0px 50px;
+}
+
+.row.menuSelectCtn ul li {
+    margin-right:20px;
+}
+
+.row.menuSelectCtn ul li:last-child {
+    margin-right: 0;
+}
+
+.row.menuSelectCtn ul li a {
+    padding:10px;
+    background:rgba(180,180,180,.3);
+    color:rgba(27,134,167,.8);
+    border-radius:4px;
+}
+
+.row.menuSelectCtn ul li a:hover {
+    color:rgba(27,134,167,1);
+    background:rgba(180,180,180,.4);
+}
+
+
+#SearchBtn {
+    background:rgb(15, 165, 210);
+    color:white;
+    box-shadow:0px 0px 1px rgba(15,25,120,.2);
+    border:1px solid rgb(15, 165, 210);
+}
 
