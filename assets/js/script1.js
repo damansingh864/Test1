@@ -1,6 +1,8 @@
 $("document").ready( function() {
     
+     
             CategoryResult('');
+           
             function CategoryResult(a) {
                    
                 
@@ -9,7 +11,7 @@ $("document").ready( function() {
                        url : 'http://acadprojects.com/py/notes/sharing/note' + a,
                        dataType:'json',
                        success : function(result)  {
-                            alert("working");
+                        
                            $("#QuestionContainer").html('');
                            $("#StudyMaterials").html('');
                            $("#ProjectReports").html('');
@@ -22,10 +24,12 @@ $("document").ready( function() {
 
                                     var myNotes = result.notes[i];                              
                                     var type = result.notes[i]["document_type"];
-                                 alert(type);
+                        
                             if(type == 'Question Papers' || type == 'Question Paper') {
                                 $("#QuestionContainer").append(
                                 '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=' +  myNotes.image_url  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +   myNotes["doc_name"] + '</h3><p id="NoteDescription">' + myNotes["doc_description"] +  '</p><div class="icons"><p><a href="' + myNotes.doc_url +'" target="_blank"> <span class="glyphicon glyphicon-download-alt"></span></a><span class="span"></span> <span class="glyphicon glyphicon-share" data-toggle="modal" data-target="#myModal1"></span><span class="span" id="likes">' +  myNotes.like_count + ' </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
+                                                                                        
+                                
                             }
                             else if(type == 'Study Material')  {
                                 $("#StudyMaterials").append(
@@ -34,50 +38,109 @@ $("document").ready( function() {
                                  $("#ProjectReports").append(
                                 '<div class="col-md-4 QuestionBoxContainer"><div class="NotesContainer"><div class="noteImg"><img id="paperimg" src=' +  myNotes.image_url  + ' class="img-responsive"></div><div class="noteContent"><h3 class="text-center" id="nameNote">' +   myNotes["doc_name"] + '</h3><p id="NoteDescription">' + myNotes["doc_description"] +  '</p><div class="icons"><p><a href="' + myNotes.doc_url +'" target="_blank"> <span class="glyphicon glyphicon-download-alt"></span></a><span class="span"></span> <span class="glyphicon glyphicon-share" data-toggle="modal" data-target="#myModal1"></span><span class="span" id="likes">' +  myNotes.like_count + ' </span><span class="glyphicon glyphicon-thumbs-up"></span><p></div></div></div></div>');
                             }
-
+            
                         }
-
                     
-                            
+                           
+        /*********** See More **********/
+        
+        x=3,y=3,z=3; // Initial variables
+                           
+        // Show upto 3 div in page.
+                           
+        $('#QuestionContainer .col-md-4:lt('+ x +')').show();
+        $('#StudyMaterials .col-md-4:lt('+y+')').show();
+        $('#ProjectReports .col-md-4:lt('+z+')').show();
+        
+   
+        $( "#MoreSee1" ).unbind( "click" );
+                           
+                           
+                           
+        //On Click The QuestionPaper More See
+        $('#MoreSee1').click(function() {
+            
+        
+                a=$('#QuestionContainer .col-md-4').length;        
+                
+                x= (x+3 <= a) ? x+3 : a;
+                $('#QuestionContainer .col-md-4:lt('+x+')').show(); 
+         });
+                     
+                           
+        $( "#MoreSee2" ).unbind( "click" );
+                           
+                           
+                           
+                           
+        //On Click The StudyMaterials More See
+        $('#MoreSee2').click(function() {
+            
+                b=$('#StudyMaterials .col-md-4').length;        
+             
+                y= (y+3 <= b) ? y+3 : b;
+                $('#StudyMaterials .col-md-4:lt('+y+')').show(); 
+         });
+           
+        
+        $("#MoreSee3" ).unbind( "click" );
+                           
+                           
+                           
+        //On Click The ProjectReports More See
+        $('#MoreSee3').click(function() {
+            
+                c=$('#ProjectReports .col-md-4').length;        
+                
+                z= (z+3 <= c) ? z+3 : c;
+                $('#ProjectReports .col-md-4:lt('+z+')').show(); 
+         });
+    
+
+                                            
                         },
                         error: function() {
                             alert("error");
                         }
                     });
                 
+                
                 }   
-                                
-                            // ON Arts button Click
-                            $("#artsBtn").on("click",function() {                                 
-                                CategoryResult('?category=arts');                            
-                            });
+                                    
+      
+     
+                // ON Arts button Click
+                $("#artsBtn").on("click",function() {                                
+                    CategoryResult('?category=arts');                            
+                });
 
-                            // ON Science button Click
-                            $("#SciBtn").on("click",function() {                                
-                                CategoryResult('?category=science');
+                // ON Science button Click
+                $("#SciBtn").on("click",function() {                                
+                    CategoryResult('?category=science');
 
-                            });
+                });
 
-                            // ON Latest button Click
-                            $("#latestbtn").on("click",function() {                                
-                                CategoryResult('');
+                // ON Latest button Click
+                $("#latestbtn").on("click",function() {   
+            
+                    CategoryResult('');
 
-                            });
+                });
 
-                            // ON Engineering button Click
-                            $("#EnngBtn").on("click",function() {                                
-                                CategoryResult('?category=engineering');
+                // ON Engineering button Click
+                $("#EnngBtn").on("click",function() {                                
+                    CategoryResult('?category=engineering');
 
-                            });
+                });
 
-                            // ON Mathematics button Click
-                            $("#MathsBtn").on("click",function() {                                 
-                                CategoryResult('?category=mathematics');
+                // ON Mathematics button Click
+                $("#MathsBtn").on("click",function() {                                 
+                    CategoryResult('?category=mathematics');
 
-        
-                            });                            
-    
-    
+
+                });                            
+
+
         /**** Submission Button **********/
      
     
@@ -311,7 +374,13 @@ $("document").ready( function() {
                   alert("File Successfully Uploaded!!");
                   $('#myModal').modal('toggle');
                   location.reload();
-            }
+            },
+              error: function () {
+                  alert("error");
+              }
           });
        
         });
+
+
+

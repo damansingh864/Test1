@@ -300,3 +300,12 @@ ul.nav.navbar-nav li > a.navbar-brand {
     border:1px solid rgb(15, 165, 210);
 }
 
+
+#MoreSee3:hover, #MoreSee2:hover, #MoreSee1:hover {
+    cursor: pointer;
+}
+
+
+#QuestionContainer .col-md-4, #StudyMaterials .col-md-4, #ProjectReports .col-md-4 {
+    display:none;
+}
